@@ -1,0 +1,40 @@
+{% from "_formsH.html" import render_field %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name ="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="..\static\css\signin.css">
+
+        <title>Login</title>
+    </head>
+    <body>
+        <div class="cuerpo">
+            <div class="lado-izquierdo">
+                <div class="logo">
+                    <img src="" alt="">
+                    <h2>Your Logo</h2>
+                </div>
+            <div>
+            <div class="textos">
+                <h1>Sign In</h1>
+                <h3>Your Account</h3>
+            </div>
+            <div class="form">
+                <form method=post class="formulario">
+
+                    {{ render_field(form.username) }}
+                    {{ render_field(form.password) }}
+                    
+                    <input type="submit" class="btn btn-primary" value="Log In">
+                </form>
+            </div>
+            <div class="textos">
+                <h3>¿No tienes cuenta? <a href="/sign-up">Regístrate</a></h3>
+            </div>
+
+        </div>
+    </body>
+</html>
