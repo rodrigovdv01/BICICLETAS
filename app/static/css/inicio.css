@@ -121,6 +121,7 @@ h1 {
 
 .list-container {
     position: absolute;
+    padding: 15px;
     right: 0px;
     left: 0px;
     bottom: 0px;
@@ -140,6 +141,10 @@ th,
 td {
     text-align: center;
     border: 1px solid;
+}
+
+table {
+    border-collapse: collapse;
 }
 
 th {
