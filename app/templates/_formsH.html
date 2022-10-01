@@ -1,7 +1,6 @@
 {% macro render_field(field) %}
 <link rel="stylesheet" href="..\static\css\signin.css">
     <div class="sep">
-        {{ field.label }}
         {{ field(**kwargs)|safe}}
     </div>
         {% if field.errors %}

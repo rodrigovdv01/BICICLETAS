@@ -51,26 +51,26 @@ def not_found(e):
 def signup():
     form = forms.SignUpF(request.form)
     if request.method == 'POST':
-        username = form.username.data
         email = form.email.data
+        username = form.username.data
         password = form.password.data
+        usuario = Usuario(email, username, password) 
 
         email_const = Usuario.query.filter_by(email=email).first()
         user_const = Usuario.query.filter_by(username=username).first()
-        
+
         if (email_const is not None):
             if (email == email_const.email):
                 return render_template('signup.html', form=form) 
         if (user_const is not None):
             if  (username == user_const.username):
-                return render_template('signup.html', form=form)    
-    
-        usuario = Usuario(username=username, email=email, password=password)
+                return render_template('signup.html', form=form)  
+
         db.session.add(usuario)
         db.session.commit()
         login_user(usuario, remember=True)
         return redirect(url_for("login.inicio"))
-    else:
+    elif request.method == 'GET':
         return render_template("signup.html", form=form)
 
 
@@ -102,16 +102,16 @@ def inicio():
             tipo = form.tipo.data,
             nivel = form.nivel.data,
             precio = form.precio.data,
-            id_usuario = current_user.email
+            id_vendedor = current_user.email
         )
         db.session.add(bicicleta)
         db.session.commit()
-        subquery = db.session.query(Bicicleta.id).filter(Bicicleta.id_usuario == current_user.email).subquery()
+        subquery = db.session.query(Bicicleta.id).filter(Bicicleta.id_vendedor == current_user.email).scalar_subquery()
         p = Bicicleta.query.filter(Bicicleta.id.in_(subquery)).all()
 
         if p is not None:
             return redirect('inicio')
-    subquery = db.session.query(Bicicleta.id).filter(Bicicleta.id_usuario == current_user.email).subquery()
+    subquery = db.session.query(Bicicleta.id).filter(Bicicleta.id_vendedor == current_user.email).scalar_subquery()
     p = Bicicleta.query.filter(Bicicleta.id.in_(subquery)).all()        
     return render_template('Index.html', form = form, bicicletas = p)
 
@@ -128,7 +128,7 @@ def agregar(user):
     response['Tipo'] = bicicleta.tipo
     response['Nivel'] = bicicleta.nivel
     response['Precio'] = bicicleta.precio
-    response['user'] = bicicleta.id_usuario
+    response['user'] = bicicleta.id_vendedor
 
     return jsonify(response)
 
@@ -149,7 +149,19 @@ def actualizar(id):
         return redirect(url_for("login.inicio"))
     return render_template('actualizar.html', form = form, id=id)
 
-@app.route('/delete/<int:id>', methods=['DELETE'])
+@app.route('/delete/<id>', methods=['GET','DELETE'])
 @login_required
 def eliminar(id):
-    return 0    
+    response = {}
+    try:
+        bicicleta = Bicicleta.query.get(id) # 1 registro
+        db.session.delete(bicicleta)
+        response['id'] = bicicleta.id
+        db.session.commit()
+        return jsonify(response)
+    except Exception as e:
+        print(e)
+        db.session.rollback()
+    finally:
+        db.session.close()
+        return jsonify(response)

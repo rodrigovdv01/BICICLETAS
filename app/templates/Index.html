@@ -159,15 +159,16 @@
             })
         }
 
-        function delete_data(user){
-            fetch('/delete/' + user,{
-                method: 'GET',
+        function delete_data(id){
+            fetch('/delete/'+id,{
+                method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
                 }
             }).then(function(response){
                 return response.json();
-            }).then(function(responseJSON){
+            }).then(function(responseJson){
+                location.reload();
             })
         }
     </script>

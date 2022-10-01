@@ -13,28 +13,23 @@
     <body>
         <div class="cuerpo">
             <div class="lado-izquierdo">
-                <div class="logo">
+                <div class="text">
                     <img src="" alt="">
-                    <h2>Your Logo</h2>
+                    <h2>Inicia sesión</h2>
                 </div>
-            <div>
-            <div class="textos">
-                <h1>Sign In</h1>
-                <h3>Your Account</h3>
             </div>
-            <div class="form">
-                <form method=post class="formulario">
+            <div class="lado-derecho">
+                <div class="form">
+                    <form method=post class="formulario">
 
-                    {{ render_field(form.username) }}
-                    {{ render_field(form.password) }}
+                        {{ render_field(form.username) }}
+                        {{ render_field(form.password) }}
                     
-                    <input type="submit" class="btn btn-primary" value="Log In">
-                </form>
+                        <input type="submit" class="btn" value="Log In">
+                        <h3>¿No tienes cuenta? <a href="/sign-up">Regístrate</a></h3>
+                    </form>
+                </div>
             </div>
-            <div class="textos">
-                <h3>¿No tienes cuenta? <a href="/sign-up">Regístrate</a></h3>
-            </div>
-
         </div>
     </body>
 </html>
