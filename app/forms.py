@@ -1,3 +1,5 @@
+from turtle import width
+from django.forms import ImageField
 from flask import Blueprint, render_template, request, session
 from flask_wtf import FlaskForm
 from wtforms import (
@@ -46,7 +48,6 @@ class SignUpF(Form):
                 validators.length(min=8, max=30, message='minimo 8 caracteres')],
                 render_kw={"placeholder":"password"}
                 )
-    
     def __init__(self, *args, **kwargs):
         super(SignUpF, self).__init__(*args, **kwargs)
 
@@ -87,6 +88,10 @@ class Bicicleta(Form):
                 'precio',
                 [validators.DataRequired(message='Espacio requerido')],
                 render_kw={"placeholder":"Precio"}
+                )
+    imagen = StringField(
+                'imagen',
+                render_kw={"placeholder":"image URL"}
                 )
     def __init__(self, *args, **kwargs):
         super(Bicicleta, self).__init__(*args, **kwargs)

@@ -15,6 +15,7 @@ from flask_login import (
     LoginManager,
     UserMixin,
     login_user,
+    logout_user,
     login_required,
     current_user
 )
@@ -41,7 +42,8 @@ def init_login(app):
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('Inicio.html')
+    p = Bicicleta.query.all()
+    return render_template('Inicio.html', bicicletas = p)
 
 @app.errorhandler(404)
 def not_found(e):
@@ -89,6 +91,11 @@ def login():
     else:
         return render_template('login.html', form = form)
 
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('.login'))
+
 @app.route('/inicio', methods=['GET', 'POST'])
 @login_required
 def inicio():
@@ -102,6 +109,7 @@ def inicio():
             tipo = form.tipo.data,
             nivel = form.nivel.data,
             precio = form.precio.data,
+            imagen = form.imagen.data,
             id_usuario = current_user.email
         )
         db.session.add(bicicleta)
@@ -112,11 +120,11 @@ def inicio():
         if p is not None:
             return redirect('inicio')
     subquery = db.session.query(Bicicleta.id).filter(Bicicleta.id_usuario == current_user.email).scalar_subquery()
-    p = Bicicleta.query.filter(Bicicleta.id.in_(subquery)).all()        
-    return render_template('Index.html', form = form, bicicletas = p)
+    p = Bicicleta.query.filter(Bicicleta.id.in_(subquery)).all()
+    usuario = current_user        
+    return render_template('Index.html', form = form, bicicletas = p, usuario=usuario)
 
 @app.route('/show-data/<user>', methods=['GET'])
-@login_required
 def agregar(user):
     response = {}
     id = int(user)
@@ -128,6 +136,7 @@ def agregar(user):
     response['Tipo'] = bicicleta.tipo
     response['Nivel'] = bicicleta.nivel
     response['Precio'] = bicicleta.precio
+    response['Imagen'] = bicicleta.imagen
     response['user'] = bicicleta.id_usuario
 
     return jsonify(response)
@@ -145,9 +154,11 @@ def actualizar(id):
         bicicleta.tipo = form.tipo.data
         bicicleta.nivel = form.nivel.data
         bicicleta.precio = int(form.precio.data)
+        bicicleta.imagen = form.imagen.data
         db.session.commit()
         return redirect(url_for("login.inicio"))
-    return render_template('actualizar.html', form = form, id=id)
+    bicicleta = Bicicleta.query.filter(Bicicleta.id == id).one_or_none()
+    return render_template('actualizar.html', form = form, id=id, bicicleta=bicicleta)
 
 @app.route('/delete/<id>', methods=['GET','DELETE'])
 @login_required
