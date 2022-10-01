@@ -17,7 +17,7 @@
         </style>
     </head>
     <body>
-        <h1>Bienvenidos a la página de Inicio</h1>
+        <h1>Agregar bicicleta - venta</h1>
         <div class="main">
             <div class="form">
                 <form method=post class="formulario">
@@ -53,7 +53,7 @@
                             {{ bicicleta.id }}
                         </td>
                         <td>
-                            <button id="{{bicicleta.id}}" onclick="show_data({{ bicicleta.id }})" class="btn btn-primary">{{ bicicleta.marca }}</button>
+                            <button id="{{bicicleta.id}}" onclick="show_data({{ bicicleta.id }})" class="">{{ bicicleta.marca }}</button>
                         </td>
                         <td>
                             {{ bicicleta.modelo }}
@@ -75,12 +75,12 @@
                         </td>
                         <td>
                             <a href="actualizar/{{ bicicleta.id }}">
-                                <button id="{{ bicicleta.id }}" onclick="update_data({{ bicicleta.id }})" class="btn btn-primary">Actualizar</button>
+                                <button id="{{ bicicleta.id }}" onclick="update_data({{ bicicleta.id }})" class="">Actualizar</button>
                             </a>
                         </td>
                         <td>
                             <a href="delete/{{bicicleta.id}}">
-                                <button id="{{bicicleta.id}}" onclick="delete_data({{ bicicleta.id }})" class="btn btn-primary">Borrar</button>
+                                <button id="{{bicicleta.id}}" onclick="delete_data({{ bicicleta.id }})" class="">Borrar</button>
                             </a>
                         </td>
                     </tr>

@@ -102,16 +102,16 @@ def inicio():
             tipo = form.tipo.data,
             nivel = form.nivel.data,
             precio = form.precio.data,
-            id_vendedor = current_user.email
+            id_usuario = current_user.email
         )
         db.session.add(bicicleta)
         db.session.commit()
-        subquery = db.session.query(Bicicleta.id).filter(Bicicleta.id_vendedor == current_user.email).scalar_subquery()
+        subquery = db.session.query(Bicicleta.id).filter(Bicicleta.id_usuario == current_user.email).scalar_subquery()
         p = Bicicleta.query.filter(Bicicleta.id.in_(subquery)).all()
 
         if p is not None:
             return redirect('inicio')
-    subquery = db.session.query(Bicicleta.id).filter(Bicicleta.id_vendedor == current_user.email).scalar_subquery()
+    subquery = db.session.query(Bicicleta.id).filter(Bicicleta.id_usuario == current_user.email).scalar_subquery()
     p = Bicicleta.query.filter(Bicicleta.id.in_(subquery)).all()        
     return render_template('Index.html', form = form, bicicletas = p)
 
@@ -128,7 +128,7 @@ def agregar(user):
     response['Tipo'] = bicicleta.tipo
     response['Nivel'] = bicicleta.nivel
     response['Precio'] = bicicleta.precio
-    response['user'] = bicicleta.id_vendedor
+    response['user'] = bicicleta.id_usuario
 
     return jsonify(response)
 

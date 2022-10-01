@@ -38,13 +38,13 @@ class Bicicleta(db.Model):
     tipo = db.Column(db.String(), nullable = False)
     nivel = db.Column(db.String(), nullable = False)
     precio = db.Column(db.Integer(), nullable = False)
-    id_vendedor = db.Column(db.String(50), db.ForeignKey('usuario.email'), nullable=True)
+    id_usuario = db.Column(db.String(50), db.ForeignKey('usuario.email'), nullable=True)
 
     usuario = db.relationship("Usuario", backref="personas")
     def __repr__(self):
         response = {}
         response['marca'] = self.marca
-        response['usuario'] = self.id_vendedor
+        response['usuario'] = self.id_usuario
         response['modelo'] = self.modelo
         response['aro'] = self.aro
         response['color'] = self.color
