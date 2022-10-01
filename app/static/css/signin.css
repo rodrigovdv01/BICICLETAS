@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&family=Poppins&display=swap');
+* {
+    box-sizing: border-box;
+}
+
 body {
     width: 100%;
     height: 100%;
@@ -7,6 +11,21 @@ body {
 a {
     color: rgb(232, 97, 77);
     text-decoration: none;
+}
+
+.home {
+    position: relative;
+    top: 5%;
+    left: 10%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    width: 100%;
+    user-select: none;
+}
+
+a:hover {
+    color: #ff9659;
 }
 
 .cuerpo {
@@ -39,6 +58,7 @@ a {
     bottom: 0;
     text-align: center;
     margin: 10%;
+    user-select: none;
 }
 
 .formulario {
@@ -47,23 +67,44 @@ a {
 
 #username {
     width: 100%;
+    border: none;
     margin: 10px 0;
     font-size: 24px;
     padding: 5px;
+    text-align: center;
+    border-radius: 8px;
 }
 
 #password {
     width: 100%;
     margin: 10px 0;
     font-size: 24px;
+    text-align: center;
+    border: none;
     padding: 5px;
+    border-radius: 8px;
 }
 
 #email {
     width: 100%;
     margin: 10px 0;
+    text-align: center;
     font-size: 24px;
+    border: none;
     padding: 5px;
+    border-radius: 8px;
+}
+
+#password:focus {
+    outline: none;
+}
+
+#email:focus {
+    outline: none;
+}
+
+#username:focus {
+    outline: none;
 }
 
 .btn {
@@ -74,6 +115,19 @@ a {
     background-color: rgb(232, 97, 77);
     width: 30%;
     margin: 0 auto;
+}
+
+h2 {
+    user-select: none;
+}
+
+h2:hover {
+    cursor: default;
+}
+
+.btn:hover {
+    background-color: #ff9659;
+    cursor: pointer;
 }
 
 h3 {

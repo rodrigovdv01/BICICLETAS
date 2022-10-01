@@ -26,7 +26,7 @@ class Usuario(UserMixin, db.Model):
         return (self.email)
     
     def __repr__(self) -> str:
-        return f'e: {self.email} \tu: {self.username} \tg: {self.password_hashed}'
+        return f'{self.username}'
 
 class Bicicleta(db.Model):
     __tablename__ = 'bicicleta'
@@ -38,6 +38,7 @@ class Bicicleta(db.Model):
     tipo = db.Column(db.String(), nullable = False)
     nivel = db.Column(db.String(), nullable = False)
     precio = db.Column(db.Integer(), nullable = False)
+    imagen = db.Column(db.String(), nullable = False)
     id_usuario = db.Column(db.String(50), db.ForeignKey('usuario.email'), nullable=True)
 
     usuario = db.relationship("Usuario", backref="personas")
@@ -50,3 +51,4 @@ class Bicicleta(db.Model):
         response['color'] = self.color
         response['tipo'] = self.tipo
         response['precio'] = self.precio
+        response['precio'] = self.imagen

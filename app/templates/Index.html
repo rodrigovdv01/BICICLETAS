@@ -7,7 +7,7 @@
         <meta name ="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="..\static\css\index.css">
 
-        <title>Inicio</title>
+        <title>Index</title>
         <style>
             .hidden {
                 display: None;
@@ -17,9 +17,14 @@
         </style>
     </head>
     <body>
-        <h1>Agregar bicicleta - venta</h1>
+        <div class="header">
+            <div class="header-l"><h1>¡Bienvenido, {{usuario.username}}! email: {{usuario.email}}</h1></div>
+            <div class="header-r"><button class="logout"><a href="/logout">Log Out</a></button></div>
+        </div>
         <div class="main">
             <div class="form">
+                
+            <h1>Agregar bicicleta</h1>
                 <form method=post class="formulario">
 
                     {{ render_field(form.marca) }}
@@ -29,11 +34,13 @@
                     {{ render_field(form.tipo) }}
                     {{ render_field(form.nivel) }}
                     {{ render_field(form.precio) }}
+                    {{ render_field(form.imagen) }}
                 
                     <input type="submit" class="btn btn-primary" value="Registrar">
                 </form>
             </div>
-            <table class="tablaBicicletas">
+            <div class="tablas">
+                <table class="tablaBicicletas">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -43,7 +50,8 @@
                         <th>Color</th>
                         <th>Tipo</th>
                         <th>Nivel</th>
-                        <th>Precio</th>
+                        <th>Precio S/.</th>
+                        <th>Imagen</th>
                     </tr>
                 </thead>
                 <tbody> 
@@ -53,7 +61,7 @@
                             {{ bicicleta.id }}
                         </td>
                         <td>
-                            <button id="{{bicicleta.id}}" onclick="show_data({{ bicicleta.id }})" class="">{{ bicicleta.marca }}</button>
+                            {{ bicicleta.marca }}
                         </td>
                         <td>
                             {{ bicicleta.modelo }}
@@ -74,6 +82,9 @@
                             {{ bicicleta.precio }}
                         </td>
                         <td>
+                            <a href="{{bicicleta.imagen}}"><img alt="{{bicicleta.modelo}}" src="{{ bicicleta.imagen }}" height="150px" width="150px"></img></a>
+                        </td>
+                        <td>
                             <a href="actualizar/{{ bicicleta.id }}">
                                 <button id="{{ bicicleta.id }}" onclick="update_data({{ bicicleta.id }})" class="">Actualizar</button>
                             </a>
@@ -86,88 +97,46 @@
                     </tr>
                     {% endfor %}
                 </tbody>
-            </table>
+                </table>
+            </div>
         </div>
     </div>
         <div id="show-info" class="hidden">
+            <div class="box-background">
+            </div>
             <div class="box">
-                <div id="content">
-                    <h1>Datos de la bicicleta</h1>
+                <div id="content" class="content">
+                    <h1 class="box-title">Datos de la bicicleta</h1>
                     <ul id="todos">
 
                     </ul>
-                    <button onclick="ocultar()">Cerrar</button>
+                    <button class="btn"onclick="ocultar()">Cerrar</button>
                 </div>
             </div>
         </div>
     </body>
     <script>
-        function show_data(user){
-            document.getElementById("todos").innerHTML = '';
-            fetch('/show-data/' + user,{
+        
+        function update_data(user) {
+            fetch('/actualizar/' + user, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            }).then(function(response){
+            }).then(function(response) {
                 return response.json();
-            }).then(function(responseJSON){
-                const li1 = document.createElement('li');
-                const li2 = document.createElement('li');
-                const li3 = document.createElement('li');
-                const li4 = document.createElement('li');
-                const li5 = document.createElement('li');
-                const li6 = document.createElement('li');
-                const li7 = document.createElement('li');
-                const li8 = document.createElement('li');
-
-                li1.innerHTML = responseJSON['user'];
-                li2.innerHTML = responseJSON['Marca'];
-                li3.innerHTML = responseJSON['Modelo'];
-                li4.innerHTML = responseJSON['Aro'];
-                li5.innerHTML = responseJSON['Color'];
-                li6.innerHTML = responseJSON['Tipo'];
-                li7.innerHTML = responseJSON['Nivel'];
-                li8.innerHTML = responseJSON['Precio'];
-
-                document.getElementById("todos").appendChild(li1);
-                document.getElementById("todos").appendChild(li2);
-                document.getElementById("todos").appendChild(li3);
-                document.getElementById("todos").appendChild(li4);
-                document.getElementById("todos").appendChild(li5);
-                document.getElementById("todos").appendChild(li6);
-                document.getElementById("todos").appendChild(li7);
-                document.getElementById("todos").appendChild(li8);
-
-                document.getElementById('show-info').className = '';
-            })
+            }).then(function(responseJSON) {})
         }
-
-        function ocultar(){
-            document.getElementById('show-info').className = 'hidden';
-        }
-
-        function update_data(user){
-            fetch('/actualizar/' + user,{
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(function(response){
-                return response.json();
-            }).then(function(responseJSON){
-            })
-        }
-
-        function delete_data(id){
-            fetch('/delete/'+id,{
+        
+        function delete_data(id) {
+            fetch('/delete/' + id, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            }).then(function(response){
+            }).then(function(response) {
                 return response.json();
-            }).then(function(responseJson){
+            }).then(function(responseJson) {
                 location.reload();
             })
         }

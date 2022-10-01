@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&family=Poppins&display=swap');
+* {
+    box-sizing: border-box;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    color: white;
+    margin: 0;
+    font-family: 'Dosis', sans-serif;
+}
+
+.hidden {
+    display: none;
+}
+
+.header {
+    position: absolute;
+    height: 10%;
+    width: 100%;
+    display: flex;
+    background: rgb(54, 54, 54);
+    background: linear-gradient(180deg, rgb(138, 44, 44) 7%, rgb(163, 41, 41) 100%);
+}
+
+.header-l {
+    text-align: center;
+    flex: 3;
+    padding: 20px 0 20px 0;
+    color: white;
+}
+
+.header-r {
+    text-align: center;
+    padding: 20px 0 20px 0;
+    flex: 1;
+}
+
+.logout {
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    width: 30%;
+    background-color: rgb(51, 51, 51);
+}
+
+.btn {
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-size: 20px;
+    width: 50%;
+    background-color: rgb(51, 51, 51);
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    background-color: rgb(210, 86, 67);
+    cursor: pointer;
+}
+
+.logout:hover {
+    transform: scale(1.2);
+    background-color: rgb(210, 86, 67);
+}
+
+.main {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 10%;
+    height: 90%;
+    display: flex;
+}
+
+.form {
+    flex: 2;
+    text-align: center;
+    padding: 15px;
+    border-right: none;
+    background: rgb(78, 78, 78);
+}
+
+.tablas {
+    flex: 5;
+    padding: 15px;
+    margin: 15px;
+}
+
+.formulario {
+    vertical-align: middle;
+}
+
+.sep {
+    margin: 5px auto;
+}
+
+#modelo:focus {
+    outline: none;
+}
+
+#marca:focus {
+    outline: none;
+}
+
+#tipo:focus {
+    outline: none;
+}
+
+#color:focus {
+    outline: none;
+}
+
+#aro:focus {
+    outline: none;
+}
+
+#nivel:focus {
+    outline: none;
+}
+
+#precio:focus {
+    outline: none;
+}
+
+#imagen:focus {
+    outline: none;
+}
+
+#modelo {
+    font-size: 16px;
+    padding: 5px;
+    background-color: rgb(236, 236, 236);
+    border: none;
+    border-radius: 4px;
+}
+
+#marca {
+    font-size: 16px;
+    padding: 5px;
+    background-color: rgb(236, 236, 236);
+    border: none;
+    border-radius: 4px;
+}
+
+#tipo {
+    font-size: 16px;
+    padding: 5px;
+    background-color: rgb(236, 236, 236);
+    border: none;
+    border-radius: 4px;
+}
+
+#aro {
+    font-size: 16px;
+    padding: 5px;
+    background-color: rgb(236, 236, 236);
+    border: none;
+    border-radius: 4px;
+}
+
+#color {
+    font-size: 16px;
+    padding: 5px;
+    background-color: rgb(236, 236, 236);
+    border: none;
+    border-radius: 4px;
+}
+
+#nivel {
+    font-size: 16px;
+    padding: 5px;
+    background-color: rgb(236, 236, 236);
+    border: none;
+    border-radius: 4px;
+}
+
+#imagen {
+    font-size: 16px;
+    padding: 5px;
+    background-color: rgb(236, 236, 236);
+    border: none;
+    border-radius: 4px;
+}
+
+#link {
+    font-size: 16px;
+    padding: 5px;
+    background-color: rgb(236, 236, 236);
+    border: none;
+    border-radius: 4px;
+}
+
+#precio {
+    font-size: 16px;
+    padding: 5px;
+    background-color: rgb(236, 236, 236);
+    border: none;
+    border-radius: 4px;
+}
+
+.tablaBicicletas {
+    width: 100%;
+}
+
+th,
+td {
+    text-align: center;
+    border: 1px solid;
+}
+
+th {
+    background: rgb(210, 86, 67);
+    font-family: 'Dosis', sans-serif;
+}

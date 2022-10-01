@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&family=Poppins&display=swap');
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: white;
+    margin: 0;
+    font-family: 'Dosis', sans-serif;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.header {
+    height: 10%;
+    padding: 20px;
+    background: linear-gradient(180deg, rgb(138, 44, 44) 7%, rgb(163, 41, 41) 100%);
+}
+
+.main {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    top: 20%;
+    display: flex;
+    padding: 0 40px;
+}
+
+.img {
+    position: relative;
+    width: 440px;
+    flex: 1;
+}
+
+.form {
+    display: flex;
+    flex: 3;
+    text-align: center;
+    padding: 15px;
+    border-right: none;
+}
+
+.formulario {
+    text-align: center;
+    flex: 3;
+}
+
+#modelo {
+    font-size: 16px;
+    padding: 5px;
+    width: 80%;
+    text-align: center;
+}
+
+#marca {
+    font-size: 16px;
+    padding: 5px;
+    width: 80%;
+    text-align: center;
+}
+
+#tipo {
+    font-size: 16px;
+    padding: 5px;
+    width: 80%;
+    text-align: center;
+}
+
+#aro {
+    font-size: 16px;
+    padding: 5px;
+    width: 80%;
+    text-align: center;
+}
+
+#color {
+    font-size: 16px;
+    padding: 5px;
+    width: 80%;
+    text-align: center;
+}
+
+#nivel {
+    font-size: 16px;
+    padding: 5px;
+    width: 80%;
+    text-align: center;
+}
+
+#imagen {
+    font-size: 16px;
+    padding: 5px;
+    width: 80%;
+    text-align: center;
+}
+
+#link {
+    font-size: 16px;
+    padding: 5px;
+    width: 80%;
+    text-align: center;
+}
+
+#precio {
+    font-size: 16px;
+    padding: 5px;
+    width: 80%;
+    text-align: center;
+}
+
+#modelo:focus {
+    outline: none;
+}
+
+#marca:focus {
+    outline: none;
+}
+
+#tipo:focus {
+    outline: none;
+}
+
+#color:focus {
+    outline: none;
+}
+
+#aro:focus {
+    outline: none;
+}
+
+#nivel:focus {
+    outline: none;
+}
+
+#precio:focus {
+    outline: none;
+}
+
+#imagen:focus {
+    outline: none;
+}
+
+.btn {
+    color: white;
+    padding: 5px;
+    flex: 1;
+    border-radius: 5px;
+    font-size: 15px;
+    background-color: rgb(232, 97, 77);
+    width: 200px;
+    margin: 10px auto;
+    height: 40px;
+}
+
+.btn:hover {
+    background-color: #ff9659;
+    cursor: pointer;
+}
+
+h1 {
+    margin: 0;
+    display: inline-block;
+}

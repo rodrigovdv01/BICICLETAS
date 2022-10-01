@@ -1,13 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis:wght@500&family=Poppins&display=swap');
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     width: 100%;
     height: 100%;
-    box-sizing: border-box;
 }
 
 a {
     color: white;
     text-decoration: none;
+}
+
+.hidden {
+    display: none;
 }
 
 .cuerpo {
@@ -22,6 +33,25 @@ a {
     background-size: cover;
 }
 
+.nuestras {
+    background-color: rgba(0, 0, 0, 60%);
+    text-align: center;
+    height: 120px;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    scroll-behavior: smooth;
+}
+
+h1 {
+    font-size: 48px;
+    margin: 0;
+    padding: 20px;
+}
+
 .container {
     position: absolute;
     text-align: center;
@@ -29,7 +59,7 @@ a {
     right: 0;
     margin: auto;
     width: 35%;
-    height: 25%;
+    height: 180px;
     border-radius: 80px 0 0 20px;
     background-color: rgba(33, 33, 19, 80%);
 }
@@ -45,6 +75,7 @@ a {
     font-size: 50px;
     height: 50%;
     padding: 20px 0 0;
+    user-select: none;
 }
 
 .links {
@@ -55,6 +86,7 @@ a {
     width: 100%;
     padding: 5% 0;
     font-family: 'Poppins', sans-serif;
+    user-select: none;
 }
 
 .login {
@@ -65,6 +97,11 @@ a {
     width: 30%;
     margin: 0 20px;
     background-color: rgb(232, 97, 77);
+    text-decoration: underline;
+}
+
+.login:hover {
+    background-color: rgb(210, 86, 67);
 }
 
 .register {
@@ -75,4 +112,37 @@ a {
     width: 30%;
     margin: 0 20px;
     background-color: rgb(132, 108, 230);
+    text-decoration: underline;
+}
+
+.register:hover {
+    background-color: rgb(110, 89, 195);
+}
+
+.list-container {
+    position: absolute;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+    top: 100%;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+}
+
+.tablaBicicletas {
+    width: 100%;
+    padding: 20px 40px;
+}
+
+table,
+th,
+td {
+    text-align: center;
+    border: 1px solid;
+}
+
+th {
+    background: rgb(210, 86, 67);
+    font-family: 'Dosis', sans-serif;
 }
