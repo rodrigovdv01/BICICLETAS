@@ -2,7 +2,7 @@
 <h2>Descripción del proyecto</h2>
 <p>Una plataforma web donde el usuario creado puede agregar bicicletas a la base de datos, editarlas o eliminarlas. En la página principal, sin necesidad de tener un usuario, encontrarás la lista de todas las bicicletas agregadas con su respectiva marca, modelo, tamaño de aro, color, tipo, nivel, precio y una imagen que al darle click te redirige a la página principal de la marca de bicicletas para obtener información más detallada de esta. También muestra el correo del usuario que las agregó al hacer click en la marca del producto.<p>
 
-<h2>Objetivos principales<h2>
+<h2>Objetivos principales</h2>
 <p><ul>
 	<li>Que cada usuario pueda publicar sus productos y comprar los productos que publican los demás usuarios</li>
 	<li>Permitir a los usuarios nuevos registrarse</li>
