@@ -20,12 +20,14 @@ from flask_login import (
     current_user
 )
 
+import bcrypt
 import hashlib
 from itsdangerous import SignatureExpired, URLSafeTimedSerializer
 from .db.database import db
 from . import forms
 from .db.models import Usuario, Bicicleta
 from werkzeug.utils import secure_filename
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Blueprint('login', __name__,
                 template_folder='templates')
@@ -85,10 +87,9 @@ def signup():
         email = form.email.data
         username = form.username.data
         password = form.password.data
-        usuario = Usuario(email, username, password) 
+        usuario = Usuario(email, username, generate_password_hash(password, "sha256")) 
 
-        #Esto sirve para que no se creen usuarios con email o username repetidos,
-        #  regresa la página de registro si se ingresa un input repetido
+        #Esto sirve para que no se creen usuarios con email o username repetidos, regresa la página de registro si se ingresa un input repetido
         email_const = Usuario.query.filter_by(email=email).first()
         user_const = Usuario.query.filter_by(username=username).first()
 
@@ -113,8 +114,7 @@ def signup():
 #READ
 #Tercera ruta - login. Se muestra el template login.html
 #Asignamos el formulario que se va a mostrar en la página LoginF
-#Si el método es post, se realiza una consulta query y si se encuentra
-#  que el usuario ingresado en el formulario existe, se loggea el usuario
+#Si el método es post, se realiza una consulta query y si se encuentra que el usuario ingresado en el formulario existe, se loggea el usuario
 # y te redirige a la ruta de /inicio
 @app.route('/login/', methods=['GET', 'POST'])
 def login():
@@ -124,19 +124,19 @@ def login():
         password = form.password.data
         usuario = Usuario.query.filter_by(username = username).first()
 
-        if (usuario is not None and usuario.check_password(password)):
-            login_user(usuario, remember=True)
-            return redirect(url_for("login.inicio"))
+        if (usuario is not None):
+            if check_password_hash(usuario.password_hashed, password):
+                login_user(usuario, remember=True)
+                return redirect(url_for("login.inicio"))
         return render_template('login.html', form=form)
     else:
         return render_template('login.html', form = form)
 
 
-#CREATE BICICLETA
 #Cuarta ruta - inicio. Se muestra el template index.html, página que se muestra al loggearse
 #Asignamos el formulario que se va a mostrar en la página, "Bicicleta".
 #Si el método es post, se agrega una nueva biciclelta con los datos ingresados en el formulario
-@app.route('/inicio', methods=['GET', 'POST'])
+@app.route('/agregar-bicicleta', methods=['GET', 'POST'])
 @login_required
 def inicio():
     form = forms.Bicicleta(request.form)
@@ -169,6 +169,7 @@ def inicio():
     return render_template('Index.html', form = form, bicicletas = p, usuario=usuario)
 
 #Controllers
+
 #UPDATE BICICLETA
 @app.route('/actualizar/<id>', methods=['GET','POST'])
 @login_required

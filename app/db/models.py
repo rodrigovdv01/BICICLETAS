@@ -1,4 +1,3 @@
-from turtle import color
 from flask import Flask, jsonify, url_for, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
@@ -8,7 +7,7 @@ class Usuario(UserMixin, db.Model):
     __tablename__ = 'usuario'
     email = db.Column(db.String(50), primary_key=True)
     username = db.Column(db.String(30), unique=True)
-    password_hashed = db.Column(db.String(120), nullable=False)
+    password_hashed = db.Column(db.String(), nullable=False)
 
     def __init__(self, email, username, password):
         self.email = email
@@ -51,4 +50,4 @@ class Bicicleta(db.Model):
         response['color'] = self.color
         response['tipo'] = self.tipo
         response['precio'] = self.precio
-        response['precio'] = self.imagen
+        response['imagen'] = self.imagen
