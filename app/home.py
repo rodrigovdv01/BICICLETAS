@@ -126,8 +126,9 @@ def login():
 
         if (usuario is not None):
             if check_password_hash(usuario.password_hashed, password):
+    
                 login_user(usuario, remember=True)
-                return redirect(url_for("login.inicio"))
+            return redirect(url_for("login.inicio"))
         return render_template('login.html', form=form)
     else:
         return render_template('login.html', form = form)
@@ -136,7 +137,7 @@ def login():
 #Cuarta ruta - inicio. Se muestra el template index.html, página que se muestra al loggearse
 #Asignamos el formulario que se va a mostrar en la página, "Bicicleta".
 #Si el método es post, se agrega una nueva biciclelta con los datos ingresados en el formulario
-@app.route('/agregar-bicicleta', methods=['GET', 'POST'])
+@app.route('/inicio', methods=['GET', 'POST'])
 @login_required
 def inicio():
     form = forms.Bicicleta(request.form)

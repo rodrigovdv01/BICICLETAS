@@ -23,6 +23,7 @@ def create_app():
     migrate.init_app(app, db)           #Flask DB Migration
     init_login(app)
 
+
     #handlers de errores
     register_error_handlers(app)
     return app
