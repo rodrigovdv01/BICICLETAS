@@ -1,0 +1,26 @@
+body {
+    background: url(images/paisaje_bicicleta.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.box {
+    width: 20%;
+    height: 20%;
+    position: absolute;
+    top: 0;
+    bottom: 30%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    color: white;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    background-color: rgb(210, 86, 67);
+    padding: 10px;
+    border-radius: 20px;
+}
